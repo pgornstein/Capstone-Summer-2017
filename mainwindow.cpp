@@ -21,15 +21,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Quits application when Quit button is released
 void MainWindow::on_cancelButton_released()
 {
     QApplication::quit();
 }
 
+
+// Checks user entered account info when login button is pressed
 void MainWindow::on_loginButton_released()
 {
-    checkUser *isUPValid = new checkUser();
-    isUPValid->enterUsrNamePassword(ui->usernameTxt->text(), ui->passwordTxt->text());
+    checkUser *isUPValid = new checkUser(ui->usernameTxt->text(), ui->passwordTxt->text());
     if (isUPValid->isAccountFound()) {
         qDebug() <<"Success!";
         QMessageBox *EULA = new QMessageBox();

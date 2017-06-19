@@ -7,13 +7,9 @@
 class checkUser
 {
 public:
-    checkUser();
+    checkUser(QString, QString);
     ~checkUser();
-
-    void enterUsrNamePassword(QString, QString);
     bool isAccountFound();
-
-
 
 private:
     std::string name, password;
