@@ -23,7 +23,7 @@ checkUser::checkUser(QString mName, QString mPassword)
  * Checks server to see if account is found
  * Return true if 'name' and 'password' is found in the server
  */
-bool checkUser::isAccountFound() {
+bool checkUser::isAccountFound() const {
 
     //  std::string name, password; check server against these values
     // return true if account is found using sql queries
