@@ -37,6 +37,9 @@ void MainWindow::on_loginButton_released()
         QMessageBox *EULA = new QMessageBox();
         EULA->setText("This is the End User License Agreement \n Capstone does not come with warrenty!");
         EULA->show();
-    }
+    } else { /* Display error message on status bar */
+        ui->statusBar->showMessage("Invalid Username and/or Password!", 3000);
+        ui->passwordTxt->clear();
 
+    }
 }
