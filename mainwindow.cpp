@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "checkuser.h"
+#include "bikewindow.h"
 #include <QDebug>
 #include <QGraphicsPixmapItem>
 #include <QMessageBox>
@@ -42,6 +43,10 @@ void MainWindow::on_loginButton_released()
         EULA->setModal(true);
         if (EULA->exec() == QMessageBox::Yes) {
             // close current windows and open main app 'todo'
+            //QApplication::closeAllWindows();
+            bikeWindow *myBikeWindow = new bikeWindow();
+            hide();
+            myBikeWindow->show();
         } else {
             // User did not agree to terms and conditions, quit app
             QApplication::quit();

@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    checkuser.cpp
+    checkuser.cpp \
+    bikewindow.cpp
 
 HEADERS += \
         mainwindow.h \
-    checkuser.h
+    checkuser.h \
+    bikewindow.h
 
 FORMS += \
         mainwindow.ui
