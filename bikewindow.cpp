@@ -1,9 +1,10 @@
 #include "bikewindow.h"
+#include "checklist.h"
 
 #include <QDebug>
 #include <QMessageBox>
 #include <QListWidget>
-
+#include <QSpacerItem>
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
     setupBikeWindow();
@@ -61,4 +62,9 @@ void bikeWindow::displayBikeInfo() {
     delete editBikeID;
     delete acceptBikeID;
     delete enterBikeID;
+
+    checkList *myList = new checkList(this, bikeID);
+    myQVBox->addWidget(myList);
+
+
 }
