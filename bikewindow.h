@@ -4,6 +4,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QLabel>
+#include <QVBoxLayout>
 
 
 class bikeWindow : public QWidget
@@ -20,6 +21,7 @@ private:
     QLineEdit *editBikeID;
     QLabel *enterBikeID;
     QPushButton *acceptBikeID;
+    QVBoxLayout *myQVBox;
 
     int bikeID;
 

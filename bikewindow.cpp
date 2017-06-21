@@ -1,8 +1,8 @@
 #include "bikewindow.h"
 
-#include <QVBoxLayout>
 #include <QDebug>
 #include <QMessageBox>
+#include <QListWidget>
 
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
@@ -10,7 +10,7 @@ bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 }
 
 void bikeWindow::setupBikeWindow() {
-    QVBoxLayout *myQVBox = new QVBoxLayout(this);
+    myQVBox = new QVBoxLayout(this);
     this->resize(400,400);
 
     enterBikeID = new QLabel();
@@ -61,5 +61,4 @@ void bikeWindow::displayBikeInfo() {
     delete editBikeID;
     delete acceptBikeID;
     delete enterBikeID;
-
 }
