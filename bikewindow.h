@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 
 
 class bikeWindow : public QWidget
@@ -22,6 +23,7 @@ private:
     QLabel *enterBikeID;
     QPushButton *acceptBikeID;
     QVBoxLayout *myQVBox;
+    QHBoxLayout *myQHBox;
 
     int bikeID;
 

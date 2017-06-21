@@ -1,5 +1,4 @@
 #include "bikewindow.h"
-#include "checklist.h"
 
 #include <QDebug>
 #include <QMessageBox>
@@ -63,8 +62,21 @@ void bikeWindow::displayBikeInfo() {
     delete acceptBikeID;
     delete enterBikeID;
 
-    checkList *myList = new checkList(this, bikeID);
-    myQVBox->addWidget(myList);
+    myQHBox = new QHBoxLayout();
+    QSpacerItem *horiSpace = new QSpacerItem(200,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+    QLabel *checkin = new QLabel("Checkin / Checkout info",this);
+
+    myQHBox->addWidget(checkin);
+
+    QListWidget *myList = new QListWidget(this);
+
+    myQHBox->addWidget(myList);
+    myQHBox->addSpacerItem(horiSpace);
+
+    myQVBox->addLayout(myQHBox);
+
+    QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    myQVBox->addSpacerItem(vertSpace);
 
 }
