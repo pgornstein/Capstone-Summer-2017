@@ -2,7 +2,6 @@
 
 #include <QDebug>
 #include <QMessageBox>
-#include <QListWidget>
 #include <QSpacerItem>
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
@@ -63,14 +62,14 @@ void bikeWindow::displayBikeInfo() {
     delete enterBikeID;
 
     myQHBox = new QHBoxLayout();
-    QSpacerItem *horiSpace = new QSpacerItem(200,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QSpacerItem *horiSpace = new QSpacerItem(300,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QLabel *checkin = new QLabel("Checkin / Checkout info",this);
 
-    myQHBox->addWidget(checkin);
+    myQVBox->addWidget(checkin);
 
-    QListWidget *myList = new QListWidget(this);
-
+    myList = new QListWidget(this);
+    myList->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     myQHBox->addWidget(myList);
     myQHBox->addSpacerItem(horiSpace);
 
@@ -78,5 +77,22 @@ void bikeWindow::displayBikeInfo() {
 
     QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
     myQVBox->addSpacerItem(vertSpace);
+}
 
+void bikeWindow::enterCheckinData() {
+    /* TODO
+     * Get Check in/out data from server
+     * add Items to 'myList' using the addItem() or addItems() method
+     */
+}
+
+
+
+void bikeWindow::testEnterCheckinData() {
+    myList->addItem("Out: 2/2/17 5:30am");
+    myList->addItem("In: 2/2/17 7:45am");
+    myList->addItem("Out: 2/2/17 5:30am");
+    myList->addItem("In: 2/2/17 7:45am");
+    myList->addItem("Out: 2/2/17 5:30am");
+    myList->addItem("In: 2/2/17 7:45am");
 }

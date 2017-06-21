@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QListWidget>
 
 
 class bikeWindow : public QWidget
@@ -24,10 +25,15 @@ private:
     QPushButton *acceptBikeID;
     QVBoxLayout *myQVBox;
     QHBoxLayout *myQHBox;
+    QListWidget *myList;
 
     int bikeID;
 
     void displayBikeInfo();
+    void enterCheckinData();
+
+    // Test functions
+    void testEnterCheckinData();
 
 };
 
