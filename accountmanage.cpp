@@ -66,7 +66,6 @@ void accountManage::addNewBike() {
 
 void accountManage::searchForBike() {
     // Search for a bike in database and show all associated data about bike
-
    // hide(); // hide current view
     //myBikeWindow->show();
     myQHBox4->removeItem(myQVBox);

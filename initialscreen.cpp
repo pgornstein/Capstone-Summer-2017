@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QFont>
 #include <QVBoxLayout>
+#include <QMessageBox>
 
 initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
 {
@@ -26,9 +27,12 @@ initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
     manage->setText("Manage Bikes");
     myQVBox->addWidget(manage);
 
+    QPushButton *aboutUs = new QPushButton();
+    aboutUs->setText("About us");
+    myQVBox->addWidget(aboutUs);
 
     connect(manage, &QPushButton::released, this, &initialScreen::manageBikes);
-
+    connect(aboutUs, &QPushButton::released, this, &initialScreen::displayAboutUs);
 
 }
 
@@ -41,4 +45,11 @@ void initialScreen::manageBikes() {
     MainWindow *main = new MainWindow;
     hide();
     main->show();
+}
+
+void initialScreen::displayAboutUs() {
+    QMessageBox *us = new QMessageBox();
+    QString project("Bike rental service created for our capstone class\n\n");
+    us->setText(project + "Adam Ovadia\nLiam Hayes\nPhillip Gornstein\nTasdique Chowdhury\nVlad Shostak");
+    us->show();
 }

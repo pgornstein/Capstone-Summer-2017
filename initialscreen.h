@@ -13,6 +13,7 @@ public:
 private:
     int getNumberOfBikes();
     void manageBikes();
+    void displayAboutUs();
 };
 
 #endif // INITIALSCREEN_H
