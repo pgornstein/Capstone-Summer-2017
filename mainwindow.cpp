@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "checkuser.h"
 #include "bikewindow.h"
+#include "accountmanage.h"
 #include <QDebug>
 #include <QGraphicsPixmapItem>
 #include <QMessageBox>
@@ -46,7 +47,9 @@ void MainWindow::on_loginButton_released()
             //QApplication::closeAllWindows();
             bikeWindow *myBikeWindow = new bikeWindow();
             hide();
-            myBikeWindow->show();
+            //myBikeWindow->show();
+            accountManage *myManage = new accountManage();
+            myManage->show();
         } else {
             // User did not agree to terms and conditions, quit app
             QApplication::quit();

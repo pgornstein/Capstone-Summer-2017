@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     checkuser.cpp \
-    bikewindow.cpp
+    bikewindow.cpp \
+    accountmanage.cpp
 
 HEADERS += \
         mainwindow.h \
     checkuser.h \
-    bikewindow.h
+    bikewindow.h \
+    accountmanage.h
 
 FORMS += \
         mainwindow.ui
