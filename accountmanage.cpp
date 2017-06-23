@@ -1,5 +1,4 @@
 #include "accountmanage.h"
-#include "bikewindow.h"
 
 #include <QPushButton>
 #include <QHBoxLayout>
@@ -8,7 +7,8 @@
 
 accountManage::accountManage(QWidget *parent) : QWidget(parent)
 {
-    myQVBox = new QVBoxLayout(this);
+    cSearch = 0;
+    myQVBox = new QVBoxLayout();
     this->resize(800,500);
     setWindowTitle("Account Management");
 
@@ -42,7 +42,10 @@ accountManage::accountManage(QWidget *parent) : QWidget(parent)
     myQVBox->addLayout(myQHBox2);
     myQVBox->addLayout(myQHBox3);
 
-    setLayout(myQVBox);
+    myQHBox4 = new QHBoxLayout(this);
+    myQHBox4->addLayout(myQVBox);
+
+    setLayout(myQHBox4);
 
     connect(newBike, &QPushButton::released,this, &accountManage::addNewBike);
     connect(searchBike, &QPushButton::released, this, &accountManage::searchForBike);
@@ -55,9 +58,21 @@ void accountManage::addNewBike() {
 }
 
 void accountManage::searchForBike() {
-    bikeWindow *myBikeWindow = new bikeWindow();
-    hide();
-    myBikeWindow->show();
+    // Search for a bike in database and show all associated data about bike
+
+   // hide(); // hide current view
+    //myBikeWindow->show();
+    myQHBox4->removeItem(myQVBox);
+    if (cSearch > 0) { /* Prevent window from opening multiple 'myBikeWindow' instances */
+        myQHBox4->removeWidget(myBikeWindow);
+        delete myBikeWindow;
+        cSearch--;
+    }
+    myBikeWindow = new bikeWindow();
+    myQHBox4->addWidget(myBikeWindow);
+    myQHBox4->addLayout(myQVBox);
+    cSearch++;
+
 }
 
 void accountManage::displayStatistics() {

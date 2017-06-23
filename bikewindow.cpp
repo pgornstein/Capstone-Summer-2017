@@ -1,5 +1,5 @@
 #include "bikewindow.h"
-
+#include "accountmanage.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -77,6 +77,18 @@ void bikeWindow::displayBikeInfo() {
 
     QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
     myQVBox->addSpacerItem(vertSpace);
+    testEnterCheckinData();
+
+
+
+
+  //  QHBoxLayout *backLayout = new QHBoxLayout();
+  //  QPushButton *backButton = new QPushButton("Back");
+   // backLayout->addSpacerItem(horiSpace);
+   // backLayout->addWidget(backButton);
+    //myQVBox->addLayout(backLayout);
+
+   // connect(backButton, &QPushButton::released, this, &bikeWindow::backToManagePage);
 }
 
 void bikeWindow::enterCheckinData() {
@@ -84,6 +96,7 @@ void bikeWindow::enterCheckinData() {
      * Get Check in/out data from server
      * add Items to 'myList' using the addItem() or addItems() method
      */
+
 }
 
 
@@ -95,4 +108,12 @@ void bikeWindow::testEnterCheckinData() {
     myList->addItem("In: 2/2/17 7:45am");
     myList->addItem("Out: 2/2/17 5:30am");
     myList->addItem("In: 2/2/17 7:45am");
+}
+
+void bikeWindow::backToManagePage() {
+    hide();
+    accountManage *mManage = new accountManage();
+    mManage->show();
+
+
 }

@@ -25,12 +25,14 @@ private:
     QPushButton *acceptBikeID;
     QVBoxLayout *myQVBox;
     QHBoxLayout *myQHBox;
+    QHBoxLayout *myQHBox4;
     QListWidget *myList;
 
     int bikeID;
 
     void displayBikeInfo();
     void enterCheckinData();
+    void backToManagePage();
 
     // Test functions
     void testEnterCheckinData();
