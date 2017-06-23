@@ -45,9 +45,7 @@ void MainWindow::on_loginButton_released()
         if (EULA->exec() == QMessageBox::Yes) {
             // close current windows and open main app 'todo'
             //QApplication::closeAllWindows();
-            bikeWindow *myBikeWindow = new bikeWindow();
-            hide();
-            //myBikeWindow->show();
+            hide();            
             accountManage *myManage = new accountManage();
             myManage->show();
         } else {
@@ -58,6 +56,5 @@ void MainWindow::on_loginButton_released()
     } else { /* Display error message on status bar */
         ui->statusBar->showMessage("Invalid Username and/or Password!", 3000);
         ui->passwordTxt->clear();
-
     }
 }

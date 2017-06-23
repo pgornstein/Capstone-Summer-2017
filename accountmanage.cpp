@@ -4,6 +4,7 @@
 #include <QHBoxLayout>
 #include <QSpacerItem>
 #include <QDebug>
+#include <QMessageBox>
 
 accountManage::accountManage(QWidget *parent) : QWidget(parent)
 {
@@ -54,6 +55,12 @@ accountManage::accountManage(QWidget *parent) : QWidget(parent)
 }
 
 void accountManage::addNewBike() {
+
+    // Create the elements neccessary for a new bike
+    // Send data to the server
+
+
+    QMessageBox::information(this, "Success", "New Bike successfully created!");
 
 }
 

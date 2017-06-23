@@ -28,13 +28,15 @@ SOURCES += \
         mainwindow.cpp \
     checkuser.cpp \
     bikewindow.cpp \
-    accountmanage.cpp
+    accountmanage.cpp \
+    initialscreen.cpp
 
 HEADERS += \
         mainwindow.h \
     checkuser.h \
     bikewindow.h \
-    accountmanage.h
+    accountmanage.h \
+    initialscreen.h
 
 FORMS += \
         mainwindow.ui
