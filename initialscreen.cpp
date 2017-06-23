@@ -36,7 +36,7 @@ initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
 
 }
 
-int initialScreen::getNumberOfBikes() {
+int initialScreen::getNumberOfBikes() const {
     // Search database and return the number of bikes in the system
 }
 
@@ -47,7 +47,7 @@ void initialScreen::manageBikes() {
     main->show();
 }
 
-void initialScreen::displayAboutUs() {
+void initialScreen::displayAboutUs() const {
     QMessageBox *us = new QMessageBox();
     QString project("Bike rental service created for our capstone class\n\n");
     us->setText(project + "Adam Ovadia\nLiam Hayes\nPhillip Gornstein\nTasdique Chowdhury\nVlad Shostak");

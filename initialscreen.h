@@ -11,9 +11,9 @@ public:
     explicit initialScreen(QWidget *parent = 0);
 
 private:
-    int getNumberOfBikes();
+    int getNumberOfBikes() const;
     void manageBikes();
-    void displayAboutUs();
+    void displayAboutUs() const;
 };
 
 #endif // INITIALSCREEN_H
