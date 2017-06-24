@@ -65,7 +65,9 @@ void bikeWindow::displayBikeInfo() {
     QSpacerItem *horiSpace = new QSpacerItem(300,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QLabel *checkin = new QLabel("Checkin / Checkout info",this);
+    QLabel *id = new QLabel("Bike ID: " +QString::number(bikeID));
 
+    myQVBox->addWidget(id);
     myQVBox->addWidget(checkin);
 
     myList = new QListWidget(this);
@@ -77,9 +79,22 @@ void bikeWindow::displayBikeInfo() {
 
     QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
     myQVBox->addSpacerItem(vertSpace);
+
+    serviced = new QLabel();
+    checkInService();
+    if (inService) {
+        serviced->setText("Bike is being serviced");
+    } else {
+        serviced->setText("Bike is active");
+    }
+    myQVBox->addWidget(serviced);
+
+    QPushButton *toggleServiced = new QPushButton("Toggle serviced status");
+    myQVBox->addWidget(toggleServiced);
     testEnterCheckinData();
     // Double press checkin data to copy item to clipboard
     connect(myList, &QListWidget::doubleClicked, this, &bikeWindow::copyCheckInData);
+    connect(toggleServiced, &QPushButton::released, this, &bikeWindow::toggleInService);
 
 
   //  QHBoxLayout *backLayout = new QHBoxLayout();
@@ -123,4 +138,21 @@ void bikeWindow::copyCheckInData() {
     QClipboard *copyItem = QApplication::clipboard();
     copyItem->setText(myList->currentItem()->text());
 
+}
+
+void bikeWindow::checkInService() {
+    // Using BikeID, check server to see if bike is in service
+    // set 'inService' bool to true/false
+}
+
+void bikeWindow::toggleInService() {
+    if (inService) {
+        serviced->setText("Bike is active");
+        inService = false;
+    } else {
+        serviced->setText("Bike is being serviced");
+        inService = true;
+    }
+
+    // Reflect change in server
 }

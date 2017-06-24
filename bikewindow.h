@@ -27,18 +27,21 @@ private:
     QHBoxLayout *myQHBox;
     QHBoxLayout *myQHBox4;
     QListWidget *myList;
+    QLabel *serviced;
 
     int bikeID;
+    bool inService;
 
     void displayBikeInfo();
     void enterCheckinData();
     void copyCheckInData();
     void backToManagePage();
+    void checkInService();
+    void toggleInService();
 
 
     // Test functions
     void testEnterCheckinData();
-
 };
 
 #endif // BIKEWINDOW_H
