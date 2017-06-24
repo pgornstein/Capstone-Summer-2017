@@ -64,6 +64,7 @@ void bikeWindow::displayBikeInfo() {
     QLabel *id = new QLabel("Bike ID: " +QString::number(bikeID));
     id->setFont(QFont("Times", 16, QFont::Bold));
     id->setAlignment(Qt::AlignHCenter);
+    id->setStyleSheet("border:5px solid #000000");
     checkin->setFont(QFont("Times", 16, QFont::Bold));
     myQVBox->addWidget(id);
     myQVBox->addWidget(checkin);
