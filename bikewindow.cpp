@@ -120,6 +120,15 @@ void bikeWindow::displayBikeInfo() {
     QPushButton *toggleCheckoutBtn = new QPushButton("Toggle CheckOut");
     QVBHealth->addWidget(toggleCheckoutBtn);
     connect(toggleCheckoutBtn, &QPushButton::released, this, &bikeWindow::toggleCheckOut);
+
+    QLabel *rentalTimeLbl = new QLabel();
+    rentalTimeLbl->setText("Rental time");
+    rentalTimeLbl->setFont(QFont("Times", 16, QFont::Bold));
+
+    rentalTimeUpdateLbl = new QLabel(getRentalTime());
+    QVBHealth->addWidget(rentalTimeLbl);
+    QVBHealth->addWidget(rentalTimeUpdateLbl);
+
 }
 
 void bikeWindow::enterCheckinData() {
@@ -206,4 +215,12 @@ void bikeWindow::toggleCheckOut() {
         checkOut->setText("Bike is Checked-out");
         // Update server
     }
+}
+
+QString bikeWindow::getRentalTime() {
+    // Server server for rental time
+    // Return as a QString
+
+    QString ret("2:00hrs"); //test
+    return ret;
 }

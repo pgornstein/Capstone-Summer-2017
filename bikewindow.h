@@ -36,6 +36,7 @@ private:
     QSlider *healthSlider;
     QProgressBar *healthBar;
     QLabel *checkOut;
+    QLabel *rentalTimeUpdateLbl;
 
     int bikeID;
     bool inService;
@@ -49,6 +50,7 @@ private:
     void changeHealth();
 
     QString getCheckOutData();
+    QString getRentalTime();
 
     // Test functions
     void testEnterCheckinData();
