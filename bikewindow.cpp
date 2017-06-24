@@ -5,13 +5,15 @@
 #include <QSpacerItem>
 #include <QClipboard>
 #include <QApplication>
+
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
     setupBikeWindow();
 }
 
 void bikeWindow::setupBikeWindow() {
-    myQVBox = new QVBoxLayout(this);
+    myQHBox = new QHBoxLayout(this);
+    myQVBox = new QVBoxLayout();
     this->resize(400,400);
 
     enterBikeID = new QLabel();
@@ -25,16 +27,13 @@ void bikeWindow::setupBikeWindow() {
     editBikeID->setAlignment(Qt::AlignCenter);
 
     myQVBox->addWidget(editBikeID);
-
-
     acceptBikeID = new QPushButton();
     acceptBikeID->setText("Enter");
 
-
     myQVBox->addWidget(acceptBikeID);
+    myQHBox->addLayout(myQVBox);
 
-
-    this->setLayout(myQVBox);
+    this->setLayout(myQHBox);
 
     //When 'Enter' button is pressed, run 'checkBikeID'
     connect(acceptBikeID, &QPushButton::released, this, &bikeWindow::checkBikeID);
@@ -61,24 +60,20 @@ void bikeWindow::displayBikeInfo() {
     delete acceptBikeID;
     delete enterBikeID;
 
-    myQHBox = new QHBoxLayout();
-    QSpacerItem *horiSpace = new QSpacerItem(300,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
-
     QLabel *checkin = new QLabel("Checkin / Checkout info",this);
     QLabel *id = new QLabel("Bike ID: " +QString::number(bikeID));
-
+    id->setAlignment(Qt::AlignHCenter);
     myQVBox->addWidget(id);
     myQVBox->addWidget(checkin);
 
     myList = new QListWidget(this);
     myList->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    myQHBox->addWidget(myList);
-    myQHBox->addSpacerItem(horiSpace);
+    myQVBox->addWidget(myList);
+   // myQHBox->addSpacerItem(horiSpace);
 
-    myQVBox->addLayout(myQHBox);
 
     QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    myQVBox->addSpacerItem(vertSpace);
+   // myQVBox->addSpacerItem(vertSpace);
 
     serviced = new QLabel();
     checkInService();
@@ -92,18 +87,25 @@ void bikeWindow::displayBikeInfo() {
     QPushButton *toggleServiced = new QPushButton("Toggle serviced status");
     myQVBox->addWidget(toggleServiced);
     testEnterCheckinData();
+
+
+    QVBoxLayout *QVBHealth = new QVBoxLayout();
+    QLabel *lblHealth = new QLabel("Bike Health");
+    QVBHealth->addWidget(lblHealth);
+
+    healthSlider = new QSlider(Qt::Horizontal);
+    healthSlider->setMaximum(100);
+
+    healthBar = new QProgressBar();
+    setHealth();
+    QVBHealth->addWidget(healthSlider);
+    QVBHealth->addWidget(healthBar);
+    myQHBox->addLayout(QVBHealth);
     // Double press checkin data to copy item to clipboard
     connect(myList, &QListWidget::doubleClicked, this, &bikeWindow::copyCheckInData);
     connect(toggleServiced, &QPushButton::released, this, &bikeWindow::toggleInService);
+    connect(healthSlider, &QSlider::sliderReleased, this, &bikeWindow::changeHealth);
 
-
-  //  QHBoxLayout *backLayout = new QHBoxLayout();
-  //  QPushButton *backButton = new QPushButton("Back");
-   // backLayout->addSpacerItem(horiSpace);
-   // backLayout->addWidget(backButton);
-    //myQVBox->addLayout(backLayout);
-
-   // connect(backButton, &QPushButton::released, this, &bikeWindow::backToManagePage);
 }
 
 void bikeWindow::enterCheckinData() {
@@ -113,8 +115,6 @@ void bikeWindow::enterCheckinData() {
      */
 
 }
-
-
 
 void bikeWindow::testEnterCheckinData() {
     myList->addItem("Out: 2/2/17 5:30am");
@@ -155,4 +155,17 @@ void bikeWindow::toggleInService() {
     }
 
     // Reflect change in server
+}
+
+void bikeWindow::setHealth() {
+    // Get health info from server and set it
+    healthBar->setValue(10); //test
+}
+
+void bikeWindow::changeHealth() {
+    int val = healthSlider->value();
+    // Only allow increments of 10
+    val = val + (10/2);
+    val -= val % 10;
+    healthBar->setValue(val);
 }

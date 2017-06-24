@@ -30,13 +30,13 @@ accountManage::accountManage(QWidget *parent) : QWidget(parent)
     statBike->setText("Bike statistics");
 
 
-    myQHBox->addSpacerItem(mySpacer);
+   // myQHBox->addSpacerItem(mySpacer);
     myQHBox->addWidget(newBike);
 
-    myQHBox2->addSpacerItem(mySpacer);
+   // myQHBox2->addSpacerItem(mySpacer);
     myQHBox2->addWidget(searchBike);
 
-    myQHBox3->addSpacerItem(mySpacer);
+ //   myQHBox3->addSpacerItem(mySpacer);
     myQHBox3->addWidget(statBike);
 
     myQVBox->addLayout(myQHBox);

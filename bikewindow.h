@@ -7,6 +7,8 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QListWidget>
+#include <QSlider>
+#include <QProgressBar>
 
 
 class bikeWindow : public QWidget
@@ -28,6 +30,8 @@ private:
     QHBoxLayout *myQHBox4;
     QListWidget *myList;
     QLabel *serviced;
+    QSlider *healthSlider;
+    QProgressBar *healthBar;
 
     int bikeID;
     bool inService;
@@ -38,6 +42,8 @@ private:
     void backToManagePage();
     void checkInService();
     void toggleInService();
+    void setHealth();
+    void changeHealth();
 
 
     // Test functions
