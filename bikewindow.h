@@ -32,7 +32,9 @@ private:
 
     void displayBikeInfo();
     void enterCheckinData();
+    void copyCheckInData();
     void backToManagePage();
+
 
     // Test functions
     void testEnterCheckinData();

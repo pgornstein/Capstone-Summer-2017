@@ -3,6 +3,9 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
+#include <QClipboard>
+#include <QApplication>
+#include <QMenuBar>
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
     setupBikeWindow();
@@ -36,6 +39,7 @@ void bikeWindow::setupBikeWindow() {
 
     //When 'Enter' button is pressed, run 'checkBikeID'
     connect(acceptBikeID, &QPushButton::released, this, &bikeWindow::checkBikeID);
+
 }
 
 void bikeWindow::checkBikeID() {
@@ -78,8 +82,8 @@ void bikeWindow::displayBikeInfo() {
     QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
     myQVBox->addSpacerItem(vertSpace);
     testEnterCheckinData();
-
-
+    // Double press checkin data to copy item to clipboard
+    connect(myList, &QListWidget::doubleClicked, this, &bikeWindow::copyCheckInData);
 
 
   //  QHBoxLayout *backLayout = new QHBoxLayout();
@@ -114,6 +118,13 @@ void bikeWindow::backToManagePage() {
     hide();
     accountManage *mManage = new accountManage();
     mManage->show();
+}
 
+// Method to copy item to clipboard
+void bikeWindow::copyCheckInData() {
+    int pos = myList->currentRow();
+    qDebug() <<"pos: " <<QString::number(pos);
+    QClipboard *copyItem = QApplication::clipboard();
+    copyItem->setText(myList->currentItem()->text());
 
 }
