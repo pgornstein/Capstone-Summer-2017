@@ -67,7 +67,7 @@ void bikeWindow::displayBikeInfo() {
     myQVBox->addWidget(checkin);
 
     myList = new QListWidget(this);
-    myList->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    myList->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     myQVBox->addWidget(myList);
    // myQHBox->addSpacerItem(horiSpace);
 
@@ -100,6 +100,7 @@ void bikeWindow::displayBikeInfo() {
     setHealth();
     QVBHealth->addWidget(healthSlider);
     QVBHealth->addWidget(healthBar);
+    QVBHealth->setAlignment(Qt::AlignTop);
     myQHBox->addLayout(QVBHealth);
     // Double press checkin data to copy item to clipboard
     connect(myList, &QListWidget::doubleClicked, this, &bikeWindow::copyCheckInData);
