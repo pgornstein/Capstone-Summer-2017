@@ -72,7 +72,7 @@ void bikeWindow::displayBikeInfo() {
    // myQHBox->addSpacerItem(horiSpace);
 
 
-    QSpacerItem *vertSpace = new QSpacerItem(2,200, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QSpacerItem *vertSpace = new QSpacerItem(200,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
    // myQVBox->addSpacerItem(vertSpace);
 
     serviced = new QLabel();
@@ -91,6 +91,7 @@ void bikeWindow::displayBikeInfo() {
 
     QVBoxLayout *QVBHealth = new QVBoxLayout();
     QLabel *lblHealth = new QLabel("Bike Health");
+    lblHealth->setFont(QFont("Times", 16, QFont::Bold));
     QVBHealth->addWidget(lblHealth);
 
     healthSlider = new QSlider(Qt::Horizontal);
@@ -107,6 +108,14 @@ void bikeWindow::displayBikeInfo() {
     connect(toggleServiced, &QPushButton::released, this, &bikeWindow::toggleInService);
     connect(healthSlider, &QSlider::sliderReleased, this, &bikeWindow::changeHealth);
 
+    //QVBHealth->addSpacerItem(vertSpace);
+    checkOut = new QLabel(getCheckOutData());
+    checkOut->setFont(QFont("Times", 16, QFont::Bold));
+    QVBHealth->addWidget(checkOut);
+
+    QPushButton *toggleCheckoutBtn = new QPushButton("Toggle CheckOut");
+    QVBHealth->addWidget(toggleCheckoutBtn);
+    connect(toggleCheckoutBtn, &QPushButton::released, this, &bikeWindow::toggleCheckOut);
 }
 
 void bikeWindow::enterCheckinData() {
@@ -169,4 +178,28 @@ void bikeWindow::changeHealth() {
     val = val + (10/2);
     val -= val % 10;
     healthBar->setValue(val);
+}
+
+QString bikeWindow::getCheckOutData() {
+    // Access server to see if bike is checked-in or checked-out
+    // Set bool 'isCheckedOut'
+    QString bCout("Bike is Checked-out");
+    QString bCin("Bike is Checked-in");
+    if (isCheckedOut) {
+          return bCout;
+    } else {
+        return bCin;
+    }
+}
+
+void bikeWindow::toggleCheckOut() {
+    if (isCheckedOut) {
+        isCheckedOut = false;
+        checkOut->setText("Bike is Checked-in");
+        // Update server
+    } else {
+        isCheckedOut = true;
+        checkOut->setText("Bike is Checked-out");
+        // Update server
+    }
 }
