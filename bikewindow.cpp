@@ -5,7 +5,6 @@
 #include <QSpacerItem>
 #include <QClipboard>
 #include <QApplication>
-#include <QMenuBar>
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
     setupBikeWindow();
@@ -39,7 +38,6 @@ void bikeWindow::setupBikeWindow() {
 
     //When 'Enter' button is pressed, run 'checkBikeID'
     connect(acceptBikeID, &QPushButton::released, this, &bikeWindow::checkBikeID);
-
 }
 
 void bikeWindow::checkBikeID() {
@@ -54,8 +52,6 @@ void bikeWindow::checkBikeID() {
 
         displayBikeInfo();
     }
-
-
 }
 
 void bikeWindow::displayBikeInfo() {
