@@ -62,7 +62,9 @@ void bikeWindow::displayBikeInfo() {
 
     QLabel *checkin = new QLabel("Checkin / Checkout info",this);
     QLabel *id = new QLabel("Bike ID: " +QString::number(bikeID));
+    id->setFont(QFont("Times", 16, QFont::Bold));
     id->setAlignment(Qt::AlignHCenter);
+    checkin->setFont(QFont("Times", 16, QFont::Bold));
     myQVBox->addWidget(id);
     myQVBox->addWidget(checkin);
 
@@ -76,6 +78,7 @@ void bikeWindow::displayBikeInfo() {
    // myQVBox->addSpacerItem(vertSpace);
 
     serviced = new QLabel();
+    serviced->setFont(QFont("Times", 16, QFont::Bold));
     checkInService();
     if (inService) {
         serviced->setText("Bike is being serviced");
