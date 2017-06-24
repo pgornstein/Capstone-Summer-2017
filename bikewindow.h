@@ -20,6 +20,8 @@ public:
 
 private slots:
     void checkBikeID();
+    void copyCheckInData();
+    void toggleInService();
 
 private:
     QLineEdit *editBikeID;
@@ -38,10 +40,8 @@ private:
 
     void displayBikeInfo();
     void enterCheckinData();
-    void copyCheckInData();
     void backToManagePage();
     void checkInService();
-    void toggleInService();
     void setHealth();
     void changeHealth();
 
