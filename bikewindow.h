@@ -18,6 +18,9 @@ public:
     explicit bikeWindow(QWidget *parent = 0);
     void setupBikeWindow();
 
+public slots:
+    void updateTimer();
+
 private slots:
     void checkBikeID();
     void copyCheckInData();
@@ -37,10 +40,12 @@ private:
     QProgressBar *healthBar;
     QLabel *checkOut;
     QLabel *rentalTimeUpdateLbl;
+    QLabel *tElapsedLbl;
 
     int bikeID;
     bool inService;
     bool isCheckedOut;
+    int tElapsed;
 
     void displayBikeInfo();
     void enterCheckinData();
@@ -48,6 +53,7 @@ private:
     void checkInService();
     void setHealth();
     void changeHealth();
+    int setTimeElapsed();
 
     QString getCheckOutData();
     QString getRentalTime();
