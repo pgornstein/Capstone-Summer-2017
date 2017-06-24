@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QString imgPath = ":/Res/Res/bike.png";
+    QString imgPath = ":/Res/Res/logo.jpg";
     QImage image(imgPath);
     ui->imgView->setPixmap(QPixmap::fromImage(image));
 

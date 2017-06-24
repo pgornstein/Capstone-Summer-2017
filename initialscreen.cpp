@@ -23,6 +23,12 @@ initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
     myQVBox->addWidget(welcomeMessage);
     myQVBox->addWidget(version);
 
+    QString imgPath = ":/Res/Res/logo.jpg";
+    QImage image(imgPath);
+    QLabel *logo = new QLabel();
+    logo->setPixmap(QPixmap::fromImage(image));
+    myQVBox->addWidget(logo);
+
     QPushButton *manage = new QPushButton();
     manage->setText("Manage Bikes");
     myQVBox->addWidget(manage);
