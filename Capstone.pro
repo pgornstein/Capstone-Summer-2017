@@ -29,14 +29,16 @@ SOURCES += \
     checkuser.cpp \
     bikewindow.cpp \
     accountmanage.cpp \
-    initialscreen.cpp
+    initialscreen.cpp \
+    mytimer.cpp
 
 HEADERS += \
         mainwindow.h \
     checkuser.h \
     bikewindow.h \
     accountmanage.h \
-    initialscreen.h
+    initialscreen.h \
+    mytimer.h
 
 FORMS += \
         mainwindow.ui

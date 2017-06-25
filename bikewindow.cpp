@@ -1,5 +1,6 @@
 #include "bikewindow.h"
 #include "accountmanage.h"
+#include "mytimer.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -10,7 +11,6 @@
 
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {
-    tElapsed = setTimeElapsed();
     setupBikeWindow();
 }
 
@@ -132,15 +132,8 @@ void bikeWindow::displayBikeInfo() {
     QVBHealth->addWidget(rentalTimeLbl);
     QVBHealth->addWidget(rentalTimeUpdateLbl);
 
-    QLabel *tElapsedInfoLbl = new QLabel("Time Elapsed");
-    tElapsedInfoLbl->setFont(QFont("Times", 16, QFont::Bold));
-    QVBHealth->addWidget(tElapsedInfoLbl);
-
-    tElapsedLbl = new QLabel();
-    QTimer *time = new QTimer();
-    connect(time, &QTimer::timeout, this, &bikeWindow::updateTimer);
-    time->start(1000);
-    QVBHealth->addWidget(tElapsedLbl);
+    myTimer *myTimerLayout = new myTimer();
+    QVBHealth->addWidget(myTimerLayout);
 }
 
 void bikeWindow::enterCheckinData() {
@@ -235,14 +228,4 @@ QString bikeWindow::getRentalTime() {
 
     QString ret("2:00hrs"); //test
     return ret;
-}
-
-void bikeWindow::updateTimer() {
-    tElapsedLbl->setText(QString(QDateTime::fromTime_t(tElapsed).toUTC().toString("hh:mm:ss")));
-    tElapsed++;
-}
-
-int bikeWindow::setTimeElapsed() {
-    // Get Time elapsed from server and convert to int
-    return 120; //test
 }
