@@ -14,10 +14,11 @@ initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
     QFont font("Arial",22,QFont::Bold);
     welcomeMessage->setText("Capstone Bikes");
     welcomeMessage->setFont(font);
+    welcomeMessage->setAlignment(Qt::AlignHCenter);
 
     QLabel *version = new QLabel();
     version->setText("Alpha v1.01");
-
+    version->setAlignment(Qt::AlignLeft);
     QVBoxLayout *myQVBox = new QVBoxLayout(this);
 
     myQVBox->addWidget(welcomeMessage);
@@ -27,6 +28,7 @@ initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
     QImage image(imgPath);
     QLabel *logo = new QLabel();
     logo->setPixmap(QPixmap::fromImage(image));
+    logo->setAlignment(Qt::AlignHCenter);
     myQVBox->addWidget(logo);
 
     QPushButton *manage = new QPushButton();
