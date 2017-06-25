@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
+#include <QTime>
 
 
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
@@ -72,6 +73,10 @@ void bikeWindow::displayBikeInfo() {
     id->setStyleSheet("border:5px solid #000000");
     myQVBox->addWidget(id);
 
+    QLabel *timeOfLastUpdate = new QLabel("Last Update: "+ setTimeOfUpdate());
+    timeOfLastUpdate->setAlignment(Qt::AlignTop);
+    myQVBox->addWidget(timeOfLastUpdate);
+
     checkInHistory *myCheckInHistory = new checkInHistory(bikeID);
     myQVBox->addWidget(myCheckInHistory);
 
@@ -95,10 +100,16 @@ void bikeWindow::displayBikeInfo() {
 
     myTimer *myTimerLayout = new myTimer();
     QVBHealth->addWidget(myTimerLayout);
+
 }
 
 void bikeWindow::backToManagePage() {
     hide();
     accountManage *mManage = new accountManage();
     mManage->show();
+}
+
+QString bikeWindow::setTimeOfUpdate() {
+    // Search database for time of last update
+    return QString(QTime::currentTime().toString("hh:mm:ss")); //test
 }

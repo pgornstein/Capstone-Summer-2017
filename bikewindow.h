@@ -22,12 +22,14 @@ private:
     QLabel *enterBikeID;
     QPushButton *acceptBikeID;
     QVBoxLayout *myQVBox;
+    QVBoxLayout *myQVBox2;
     QHBoxLayout *myQHBox;
     QHBoxLayout *myQHBox4;
     int bikeID;
 
     void displayBikeInfo();
     void backToManagePage();
+    QString setTimeOfUpdate();
 };
 
 #endif // BIKEWINDOW_H
