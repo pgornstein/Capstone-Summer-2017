@@ -41,7 +41,7 @@ initialScreen::initialScreen(QWidget *parent) : QWidget(parent)
 
     connect(manage, &QPushButton::released, this, &initialScreen::manageBikes);
     connect(aboutUs, &QPushButton::released, this, &initialScreen::displayAboutUs);
-
+    this->setFixedSize(this->width(), this->height());
 }
 
 int initialScreen::getNumberOfBikes() const {
