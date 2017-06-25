@@ -1,8 +1,9 @@
 #include "bikeserviced.h"
 #include <QPushButton>
 
-bikeServiced::bikeServiced()
+bikeServiced::bikeServiced(bikeHealth *myBikeHealth)
 {
+    this->myBikeHealth = myBikeHealth;
     myQVBox = new QVBoxLayout();
     serviced = new QLabel();
     serviced->setFont(QFont("Times", 16, QFont::Bold));
@@ -30,10 +31,10 @@ void bikeServiced::toggleInService() {
     if (inService) {
         serviced->setText("Bike is active");
         inService = false;
+        myBikeHealth->setBikeServicedHealth(100);
     } else {
         serviced->setText("Bike is being serviced");
         inService = true;
     }
     // Reflect change in server
 }
-

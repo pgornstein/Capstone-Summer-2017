@@ -4,12 +4,13 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
+#include "bikehealth.h"
 
 class bikeServiced : public QWidget
 {
     Q_OBJECT
 public:
-    explicit bikeServiced();
+    explicit bikeServiced(bikeHealth *);
 
 private slots:
     void toggleInService();
@@ -20,6 +21,7 @@ private:
     bool inService;
     QVBoxLayout *myQVBox;
     void checkInService();
+    bikeHealth *myBikeHealth;
 
 };
 

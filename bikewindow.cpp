@@ -89,14 +89,14 @@ void bikeWindow::displayBikeInfo() {
     QVBoxLayout *QVBHealth = new QVBoxLayout();
     myQHBox->addLayout(QVBHealth);
 
-    bikeServiced *myBikeSeviced = new bikeServiced();
-    myQVBox->addWidget(myBikeSeviced);
-
     checkOutWidget *myCheckOut = new checkOutWidget();
     myQVBox->addWidget(myCheckOut);
 
     bikeHealth *myBikeHealth = new bikeHealth();
     QVBHealth->addWidget(myBikeHealth);
+
+    bikeServiced *myBikeSeviced = new bikeServiced(myBikeHealth);
+    myQVBox->addWidget(myBikeSeviced);
 
     rentalTimeWidget *myRentalTime = new rentalTimeWidget();
     QVBHealth->addWidget(myRentalTime);

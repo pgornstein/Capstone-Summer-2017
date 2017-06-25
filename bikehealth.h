@@ -12,6 +12,8 @@ class bikeHealth : public QWidget
     Q_OBJECT
 public:
     explicit bikeHealth();
+    void setBikeServicedHealth(int);
+
 
 private slots:
     void changeHealth();

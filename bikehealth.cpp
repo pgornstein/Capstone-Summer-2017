@@ -32,3 +32,11 @@ void bikeHealth::changeHealth() {
     val -= val % 10;
     healthBar->setValue(val);
 }
+
+void bikeHealth::setBikeServicedHealth(int value) {
+    int val = value + (10/2);
+    val -= val % 10;
+    healthBar->setValue(val);
+    healthSlider->setValue(val);
+    // update server with health value
+}
