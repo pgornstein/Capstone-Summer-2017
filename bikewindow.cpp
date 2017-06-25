@@ -9,10 +9,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
-#include <QClipboard>
-#include <QApplication>
-#include <QTimer>
-#include <QDateTime>
+
 
 bikeWindow::bikeWindow(QWidget *parent) : QWidget(parent)
 {

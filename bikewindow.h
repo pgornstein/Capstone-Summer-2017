@@ -6,10 +6,6 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QListWidget>
-#include <QSlider>
-#include <QProgressBar>
-
 
 class bikeWindow : public QWidget
 {
