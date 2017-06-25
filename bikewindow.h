@@ -22,7 +22,6 @@ private slots:
     void checkBikeID();
     void copyCheckInData();
     void toggleInService();
-    void toggleCheckOut();
 
 private:
     QLineEdit *editBikeID;
@@ -35,11 +34,9 @@ private:
     QLabel *serviced;
     QSlider *healthSlider;
     QProgressBar *healthBar;
-    QLabel *checkOut;
 
     int bikeID;
     bool inService;
-    bool isCheckedOut;
     int tElapsed;
 
     void displayBikeInfo();

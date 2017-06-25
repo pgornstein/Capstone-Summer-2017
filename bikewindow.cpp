@@ -2,6 +2,7 @@
 #include "accountmanage.h"
 #include "mytimer.h"
 #include "rentaltimewidget.h"
+#include "checkoutwidget.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -116,15 +117,8 @@ void bikeWindow::displayBikeInfo() {
     connect(toggleServiced, &QPushButton::released, this, &bikeWindow::toggleInService);
     connect(healthSlider, &QSlider::sliderReleased, this, &bikeWindow::changeHealth);
 
-    //QVBHealth->addSpacerItem(vertSpace);
-    checkOut = new QLabel(getCheckOutData());
-    checkOut->setFont(QFont("Times", 16, QFont::Bold));
-    QVBHealth->addWidget(checkOut);
-
-    QPushButton *toggleCheckoutBtn = new QPushButton("Toggle CheckOut");
-    QVBHealth->addWidget(toggleCheckoutBtn);
-    connect(toggleCheckoutBtn, &QPushButton::released, this, &bikeWindow::toggleCheckOut);
-
+    checkOutWidget *myCheckOut = new checkOutWidget();
+    QVBHealth->addWidget(myCheckOut);
 
     rentalTimeWidget *myRentalTime = new rentalTimeWidget();
     QVBHealth->addWidget(myRentalTime);
@@ -193,28 +187,4 @@ void bikeWindow::changeHealth() {
     val = val + (10/2);
     val -= val % 10;
     healthBar->setValue(val);
-}
-
-QString bikeWindow::getCheckOutData() {
-    // Access server to see if bike is checked-in or checked-out
-    // Set bool 'isCheckedOut'
-    QString bCout("Bike is Checked-out");
-    QString bCin("Bike is Checked-in");
-    if (isCheckedOut) {
-          return bCout;
-    } else {
-        return bCin;
-    }
-}
-
-void bikeWindow::toggleCheckOut() {
-    if (isCheckedOut) {
-        isCheckedOut = false;
-        checkOut->setText("Bike is Checked-in");
-        // Update server
-    } else {
-        isCheckedOut = true;
-        checkOut->setText("Bike is Checked-out");
-        // Update server
-    }
 }

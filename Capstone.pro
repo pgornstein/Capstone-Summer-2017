@@ -31,7 +31,8 @@ SOURCES += \
     accountmanage.cpp \
     initialscreen.cpp \
     mytimer.cpp \
-    rentaltimewidget.cpp
+    rentaltimewidget.cpp \
+    checkoutwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     accountmanage.h \
     initialscreen.h \
     mytimer.h \
-    rentaltimewidget.h
+    rentaltimewidget.h \
+    checkoutwidget.h
 
 FORMS += \
         mainwindow.ui
