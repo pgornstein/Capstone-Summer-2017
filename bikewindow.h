@@ -20,7 +20,6 @@ public:
 
 private slots:
     void checkBikeID();
-    void copyCheckInData();
 
 private:
     QLineEdit *editBikeID;
@@ -29,15 +28,10 @@ private:
     QVBoxLayout *myQVBox;
     QHBoxLayout *myQHBox;
     QHBoxLayout *myQHBox4;
-    QListWidget *myList;
     int bikeID;
 
     void displayBikeInfo();
-    void enterCheckinData();
     void backToManagePage();
-
-    // Test functions
-    void testEnterCheckinData();
 };
 
 #endif // BIKEWINDOW_H

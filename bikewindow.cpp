@@ -5,6 +5,7 @@
 #include "checkoutwidget.h"
 #include "bikehealth.h"
 #include "bikeserviced.h"
+#include "checkinhistory.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -68,20 +69,14 @@ void bikeWindow::displayBikeInfo() {
     delete acceptBikeID;
     delete enterBikeID;
 
-    QLabel *checkin = new QLabel("Checkin / Checkout info",this);
     QLabel *id = new QLabel("Bike ID: " +QString::number(bikeID));
     id->setFont(QFont("Times", 16, QFont::Bold));
     id->setAlignment(Qt::AlignHCenter);
     id->setStyleSheet("border:5px solid #000000");
-    checkin->setFont(QFont("Times", 16, QFont::Bold));
     myQVBox->addWidget(id);
-    myQVBox->addWidget(checkin);
 
-    myList = new QListWidget(this);
-    myList->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-    myQVBox->addWidget(myList);
-   // myQHBox->addSpacerItem(horiSpace);
-    testEnterCheckinData();
+    checkInHistory *myCheckInHistory = new checkInHistory(bikeID);
+    myQVBox->addWidget(myCheckInHistory);
 
     QSpacerItem *vertSpace = new QSpacerItem(200,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
    // myQVBox->addSpacerItem(vertSpace);
@@ -105,34 +100,8 @@ void bikeWindow::displayBikeInfo() {
     QVBHealth->addWidget(myTimerLayout);
 }
 
-void bikeWindow::enterCheckinData() {
-    /* TODO
-     * Get Check in/out data from server
-     * add Items to 'myList' using the addItem() or addItems() method
-     */
-
-}
-
-void bikeWindow::testEnterCheckinData() {
-    myList->addItem("Out: 2/2/17 5:30am");
-    myList->addItem("In: 2/2/17 7:45am");
-    myList->addItem("Out: 2/2/17 5:30am");
-    myList->addItem("In: 2/2/17 7:45am");
-    myList->addItem("Out: 2/2/17 5:30am");
-    myList->addItem("In: 2/2/17 7:45am");
-}
-
 void bikeWindow::backToManagePage() {
     hide();
     accountManage *mManage = new accountManage();
     mManage->show();
-}
-
-// Method to copy item to clipboard
-void bikeWindow::copyCheckInData() {
-    int pos = myList->currentRow();
-    qDebug() <<"pos: " <<QString::number(pos);
-    QClipboard *copyItem = QApplication::clipboard();
-    copyItem->setText(myList->currentItem()->text());
-
 }
