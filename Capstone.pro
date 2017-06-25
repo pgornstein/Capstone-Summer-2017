@@ -32,7 +32,8 @@ SOURCES += \
     initialscreen.cpp \
     mytimer.cpp \
     rentaltimewidget.cpp \
-    checkoutwidget.cpp
+    checkoutwidget.cpp \
+    bikehealth.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     initialscreen.h \
     mytimer.h \
     rentaltimewidget.h \
-    checkoutwidget.h
+    checkoutwidget.h \
+    bikehealth.h
 
 FORMS += \
         mainwindow.ui

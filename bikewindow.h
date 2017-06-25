@@ -32,8 +32,6 @@ private:
     QHBoxLayout *myQHBox4;
     QListWidget *myList;
     QLabel *serviced;
-    QSlider *healthSlider;
-    QProgressBar *healthBar;
 
     int bikeID;
     bool inService;
@@ -43,8 +41,6 @@ private:
     void enterCheckinData();
     void backToManagePage();
     void checkInService();
-    void setHealth();
-    void changeHealth();
 
     QString getCheckOutData();
 

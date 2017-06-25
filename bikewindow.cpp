@@ -3,6 +3,7 @@
 #include "mytimer.h"
 #include "rentaltimewidget.h"
 #include "checkoutwidget.h"
+#include "bikehealth.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -97,28 +98,17 @@ void bikeWindow::displayBikeInfo() {
     myQVBox->addWidget(toggleServiced);
     testEnterCheckinData();
 
-
     QVBoxLayout *QVBHealth = new QVBoxLayout();
-    QLabel *lblHealth = new QLabel("Bike Health");
-    lblHealth->setFont(QFont("Times", 16, QFont::Bold));
-    QVBHealth->addWidget(lblHealth);
-
-    healthSlider = new QSlider(Qt::Horizontal);
-    healthSlider->setMaximum(100);
-
-    healthBar = new QProgressBar();
-    setHealth();
-    QVBHealth->addWidget(healthSlider);
-    QVBHealth->addWidget(healthBar);
-    QVBHealth->setAlignment(Qt::AlignTop);
     myQHBox->addLayout(QVBHealth);
-    // Double press checkin data to copy item to clipboard
     connect(myList, &QListWidget::doubleClicked, this, &bikeWindow::copyCheckInData);
     connect(toggleServiced, &QPushButton::released, this, &bikeWindow::toggleInService);
-    connect(healthSlider, &QSlider::sliderReleased, this, &bikeWindow::changeHealth);
+
 
     checkOutWidget *myCheckOut = new checkOutWidget();
-    QVBHealth->addWidget(myCheckOut);
+    myQVBox->addWidget(myCheckOut);
+
+    bikeHealth *myBikeHealth = new bikeHealth();
+    QVBHealth->addWidget(myBikeHealth);
 
     rentalTimeWidget *myRentalTime = new rentalTimeWidget();
     QVBHealth->addWidget(myRentalTime);
@@ -174,17 +164,4 @@ void bikeWindow::toggleInService() {
     }
 
     // Reflect change in server
-}
-
-void bikeWindow::setHealth() {
-    // Get health info from server and set it
-    healthBar->setValue(10); //test
-}
-
-void bikeWindow::changeHealth() {
-    int val = healthSlider->value();
-    // Only allow increments of 10
-    val = val + (10/2);
-    val -= val % 10;
-    healthBar->setValue(val);
 }
