@@ -20,7 +20,6 @@ bikeHealth::bikeHealth()
     setLayout(myQVBox);
 }
 
-
 void bikeHealth::setHealth() {
     // Get health info from server and set it
     healthBar->setValue(10); //test

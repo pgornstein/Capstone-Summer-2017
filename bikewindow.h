@@ -21,7 +21,6 @@ public:
 private slots:
     void checkBikeID();
     void copyCheckInData();
-    void toggleInService();
 
 private:
     QLineEdit *editBikeID;
@@ -31,18 +30,11 @@ private:
     QHBoxLayout *myQHBox;
     QHBoxLayout *myQHBox4;
     QListWidget *myList;
-    QLabel *serviced;
-
     int bikeID;
-    bool inService;
-    int tElapsed;
 
     void displayBikeInfo();
     void enterCheckinData();
     void backToManagePage();
-    void checkInService();
-
-    QString getCheckOutData();
 
     // Test functions
     void testEnterCheckinData();

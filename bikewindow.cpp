@@ -4,6 +4,7 @@
 #include "rentaltimewidget.h"
 #include "checkoutwidget.h"
 #include "bikehealth.h"
+#include "bikeserviced.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -43,6 +44,7 @@ void bikeWindow::setupBikeWindow() {
 
     //When 'Enter' button is pressed, run 'checkBikeID'
     connect(acceptBikeID, &QPushButton::released, this, &bikeWindow::checkBikeID);
+
 }
 
 void bikeWindow::checkBikeID() {
@@ -79,30 +81,16 @@ void bikeWindow::displayBikeInfo() {
     myList->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     myQVBox->addWidget(myList);
    // myQHBox->addSpacerItem(horiSpace);
-
+    testEnterCheckinData();
 
     QSpacerItem *vertSpace = new QSpacerItem(200,2, QSizePolicy::Expanding, QSizePolicy::Expanding);
    // myQVBox->addSpacerItem(vertSpace);
 
-    serviced = new QLabel();
-    serviced->setFont(QFont("Times", 16, QFont::Bold));
-    checkInService();
-    if (inService) {
-        serviced->setText("Bike is being serviced");
-    } else {
-        serviced->setText("Bike is active");
-    }
-    myQVBox->addWidget(serviced);
-
-    QPushButton *toggleServiced = new QPushButton("Toggle serviced status");
-    myQVBox->addWidget(toggleServiced);
-    testEnterCheckinData();
-
     QVBoxLayout *QVBHealth = new QVBoxLayout();
     myQHBox->addLayout(QVBHealth);
-    connect(myList, &QListWidget::doubleClicked, this, &bikeWindow::copyCheckInData);
-    connect(toggleServiced, &QPushButton::released, this, &bikeWindow::toggleInService);
 
+    bikeServiced *myBikeSeviced = new bikeServiced();
+    myQVBox->addWidget(myBikeSeviced);
 
     checkOutWidget *myCheckOut = new checkOutWidget();
     myQVBox->addWidget(myCheckOut);
@@ -147,21 +135,4 @@ void bikeWindow::copyCheckInData() {
     QClipboard *copyItem = QApplication::clipboard();
     copyItem->setText(myList->currentItem()->text());
 
-}
-
-void bikeWindow::checkInService() {
-    // Using BikeID, check server to see if bike is in service
-    // set 'inService' bool to true/false
-}
-
-void bikeWindow::toggleInService() {
-    if (inService) {
-        serviced->setText("Bike is active");
-        inService = false;
-    } else {
-        serviced->setText("Bike is being serviced");
-        inService = true;
-    }
-
-    // Reflect change in server
 }

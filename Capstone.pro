@@ -33,7 +33,8 @@ SOURCES += \
     mytimer.cpp \
     rentaltimewidget.cpp \
     checkoutwidget.cpp \
-    bikehealth.cpp
+    bikehealth.cpp \
+    bikeserviced.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,7 +45,8 @@ HEADERS += \
     mytimer.h \
     rentaltimewidget.h \
     checkoutwidget.h \
-    bikehealth.h
+    bikehealth.h \
+    bikeserviced.h
 
 FORMS += \
         mainwindow.ui
