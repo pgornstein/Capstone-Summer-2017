@@ -1,6 +1,7 @@
 #include "bikewindow.h"
 #include "accountmanage.h"
 #include "mytimer.h"
+#include "rentaltimewidget.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QSpacerItem>
@@ -124,13 +125,9 @@ void bikeWindow::displayBikeInfo() {
     QVBHealth->addWidget(toggleCheckoutBtn);
     connect(toggleCheckoutBtn, &QPushButton::released, this, &bikeWindow::toggleCheckOut);
 
-    QLabel *rentalTimeLbl = new QLabel();
-    rentalTimeLbl->setText("Rental time");
-    rentalTimeLbl->setFont(QFont("Times", 16, QFont::Bold));
 
-    rentalTimeUpdateLbl = new QLabel(getRentalTime());
-    QVBHealth->addWidget(rentalTimeLbl);
-    QVBHealth->addWidget(rentalTimeUpdateLbl);
+    rentalTimeWidget *myRentalTime = new rentalTimeWidget();
+    QVBHealth->addWidget(myRentalTime);
 
     myTimer *myTimerLayout = new myTimer();
     QVBHealth->addWidget(myTimerLayout);
@@ -220,12 +217,4 @@ void bikeWindow::toggleCheckOut() {
         checkOut->setText("Bike is Checked-out");
         // Update server
     }
-}
-
-QString bikeWindow::getRentalTime() {
-    // Server server for rental time
-    // Return as a QString
-
-    QString ret("2:00hrs"); //test
-    return ret;
 }

@@ -30,7 +30,8 @@ SOURCES += \
     bikewindow.cpp \
     accountmanage.cpp \
     initialscreen.cpp \
-    mytimer.cpp
+    mytimer.cpp \
+    rentaltimewidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     bikewindow.h \
     accountmanage.h \
     initialscreen.h \
-    mytimer.h
+    mytimer.h \
+    rentaltimewidget.h
 
 FORMS += \
         mainwindow.ui
