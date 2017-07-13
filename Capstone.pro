@@ -26,32 +26,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    checkuser.cpp \
-    bikewindow.cpp \
-    accountmanage.cpp \
-    initialscreen.cpp \
-    mytimer.cpp \
-    rentaltimewidget.cpp \
-    checkoutwidget.cpp \
-    bikehealth.cpp \
-    bikeserviced.cpp \
-    checkinhistory.cpp
+        checkuser.cpp \
+        bikewindow.cpp \
+        accountmanage.cpp \
+        initialscreen.cpp \
+        mytimer.cpp \
+        rentaltimewidget.cpp \
+        checkoutwidget.cpp \
+        bikehealth.cpp \
+        bikeserviced.cpp \
+        checkinhistory.cpp
 
 HEADERS += \
         mainwindow.h \
-    checkuser.h \
-    bikewindow.h \
-    accountmanage.h \
-    initialscreen.h \
-    mytimer.h \
-    rentaltimewidget.h \
-    checkoutwidget.h \
-    bikehealth.h \
-    bikeserviced.h \
-    checkinhistory.h
+        checkuser.h \
+        bikewindow.h \
+        accountmanage.h \
+        initialscreen.h \
+        mytimer.h \
+        rentaltimewidget.h \
+        checkoutwidget.h \
+        bikehealth.h \
+        bikeserviced.h \
+        checkinhistory.h
 
 FORMS += \
         mainwindow.ui
 
 RESOURCES += \
-    res.qrc
+        res.qrc
