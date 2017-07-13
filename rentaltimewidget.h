@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QString>
+#include <QComboBox>
+#include <QDialog>
 
 class rentalTimeWidget : public QWidget
 {
@@ -12,10 +14,16 @@ class rentalTimeWidget : public QWidget
 public:
    explicit rentalTimeWidget();
 
+private slots:
+    void setRentalTime();
+    void saveRentalTime();
+
 private:
     QLabel *rentalTimeUpdateLbl;
     QVBoxLayout *myQVBox;
     QString getRentalTime();
+    QComboBox *mComboBox;
+    QDialog *mDialog;
 };
 
 #endif // RENTALTIMEWIDGET_H
