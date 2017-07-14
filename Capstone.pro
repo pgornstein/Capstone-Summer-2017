@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -35,7 +35,8 @@ SOURCES += \
         checkoutwidget.cpp \
         bikehealth.cpp \
         bikeserviced.cpp \
-        checkinhistory.cpp
+        checkinhistory.cpp \
+    sqlconnector.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +49,8 @@ HEADERS += \
         checkoutwidget.h \
         bikehealth.h \
         bikeserviced.h \
-        checkinhistory.h
+        checkinhistory.h \
+    sqlconnector.h
 
 FORMS += \
         mainwindow.ui
