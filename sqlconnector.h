@@ -2,6 +2,8 @@
 #define SQLCONNECTOR_H
 
 #include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+
 
 class sqlConnector
 {
@@ -11,6 +13,7 @@ public:
 
 private:
     QSqlDatabase db;
+    QSqlQuery query;
 };
 
 #endif // SQLCONNECTOR_H

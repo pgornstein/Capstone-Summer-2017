@@ -1,7 +1,6 @@
 #include "sqlconnector.h"
 #include <QDebug>
 #include <QtSql/QSqlError>
-#include <QtSql/QSqlQuery>
 
 sqlConnector::sqlConnector()
 {
@@ -16,8 +15,10 @@ sqlConnector::sqlConnector()
               qDebug() << err.text();
        }
        //QSqlQuery query("INSERT INTO Master (BikeId, CheckedOut, Service, Distance, Health) VALUES (2, 0, 0, 0, 10);",db);
+        query = new QSqlQuery(db);
 }
 
 sqlConnector::~sqlConnector() {
     db.close();
+    query.finish();
 }
