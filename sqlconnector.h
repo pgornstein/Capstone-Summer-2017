@@ -7,6 +7,7 @@ class sqlConnector
 {
 public:
     sqlConnector();
+    ~sqlConnector();
 
 private:
     QSqlDatabase db;
