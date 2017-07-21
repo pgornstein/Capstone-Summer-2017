@@ -5,12 +5,14 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QString>
+#include "checkinhistory.h"
 
 class checkOutWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit checkOutWidget();
+    explicit checkOutWidget(checkInHistory*);
+    void setData(bool);
 
 private slots:
     void toggleCheckOut();
@@ -19,7 +21,7 @@ private:
     QLabel *checkOut;
     QVBoxLayout *myQVBox;
     bool isCheckedOut;
-    QString getCheckOutData();
+    checkInHistory *mTimeLine;
 };
 
 #endif // CHECKINWIDGET_H

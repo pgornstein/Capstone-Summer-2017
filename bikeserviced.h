@@ -11,6 +11,7 @@ class bikeServiced : public QWidget
     Q_OBJECT
 public:
     explicit bikeServiced(bikeHealth *);
+    void setData(bool);
 
 private slots:
     void toggleInService();

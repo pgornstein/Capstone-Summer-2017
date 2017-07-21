@@ -8,7 +8,7 @@ rentalTimeWidget::rentalTimeWidget()
     rentalTimeLbl->setText("Rental time");
     rentalTimeLbl->setFont(QFont("Times", 16, QFont::Bold));
     myQVBox = new QVBoxLayout();
-    rentalTimeUpdateLbl = new QLabel(getRentalTime());
+    rentalTimeUpdateLbl = new QLabel();
     myQVBox->addWidget(rentalTimeLbl);
     myQVBox->addWidget(rentalTimeUpdateLbl);
     QPushButton *setTime = new QPushButton("Set Rental Time");
@@ -17,13 +17,6 @@ rentalTimeWidget::rentalTimeWidget()
     setLayout(myQVBox);
 }
 
-QString rentalTimeWidget::getRentalTime() {
-    // Server server for rental time
-    // Return as a QString
-
-    QString ret("2:00 hh:mm"); //test
-    return ret;
-}
 
 void rentalTimeWidget::setRentalTime() {
     mDialog = new QDialog();
@@ -54,4 +47,9 @@ void rentalTimeWidget::saveRentalTime() {
     // Update server
 
     mDialog->close();
+}
+
+void rentalTimeWidget::setData(double val) {
+    QString rentalTime(QDateTime::fromTime_t(val*60).toUTC().toString("hh:mm"));
+    rentalTimeUpdateLbl->setText(rentalTime);
 }

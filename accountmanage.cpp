@@ -1,5 +1,4 @@
 #include "accountmanage.h"
-
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QSpacerItem>
@@ -8,7 +7,10 @@
 
 accountManage::accountManage(QWidget *parent) : QWidget(parent)
 {
-    cSearch = 0;
+    isBikeWindowActive = false;
+    isAddBikeActive = false;
+    isStatisticsActice = false;
+
     myQVBox = new QVBoxLayout();
     this->resize(800,500);
     setWindowTitle("Account Management");
@@ -16,9 +18,6 @@ accountManage::accountManage(QWidget *parent) : QWidget(parent)
     QHBoxLayout *myQHBox = new QHBoxLayout();
     QHBoxLayout *myQHBox2 = new QHBoxLayout();
     QHBoxLayout *myQHBox3 = new QHBoxLayout();
-
-    QSpacerItem *mySpacer = new QSpacerItem(400,2);
-
 
 
     QPushButton *newBike = new QPushButton();
@@ -52,6 +51,8 @@ accountManage::accountManage(QWidget *parent) : QWidget(parent)
     connect(searchBike, &QPushButton::released, this, &accountManage::searchForBike);
     connect(statBike, &QPushButton::released, this, &accountManage::displayStatistics);
 
+
+
 }
 
 void accountManage::addNewBike() {
@@ -69,10 +70,13 @@ void accountManage::addNewBike() {
         if (query->exec(QString::fromUtf8(statement.c_str()))) {
             QMessageBox::information(this, "Success", "New Bike successfully created!");
             myQHBox4->removeItem(myQVBox);
-            myBikeWindow = new bikeWindow();
-            myBikeWindow->queryAccess(*query);
-            myQHBox4->addWidget(myBikeWindow);
+            removeActiveWindows();
+            myBikeWindow2 = new bikeWindow();
+            myBikeWindow2->displayBikeInfo(total);
+            myBikeWindow2->queryAccess(*query);
+            myQHBox4->addWidget(myBikeWindow2);
             myQHBox4->addLayout(myQVBox);
+            isAddBikeActive = true;
 
         }
         else {
@@ -84,6 +88,7 @@ void accountManage::addNewBike() {
        QMessageBox::information(this, "Connection error", "try again in a few seconds");
    }
 
+
 }
 
 void accountManage::searchForBike() {
@@ -91,16 +96,12 @@ void accountManage::searchForBike() {
    // hide(); // hide current view
     //myBikeWindow->show();
     myQHBox4->removeItem(myQVBox);
-    if (cSearch > 0) { /* Prevent window from opening multiple 'myBikeWindow' instances */
-        myQHBox4->removeWidget(myBikeWindow);
-        delete myBikeWindow;
-        cSearch--;
-    }
+    removeActiveWindows();
+    isBikeWindowActive = true;
     myBikeWindow = new bikeWindow();
     myBikeWindow->queryAccess(*query);
     myQHBox4->addWidget(myBikeWindow);
     myQHBox4->addLayout(myQVBox);
-    cSearch++;
 
 }
 
@@ -110,4 +111,19 @@ void accountManage::displayStatistics() {
 
 void accountManage::queryAccess(QSqlQuery *a) {
     query = a;
+}
+
+
+void accountManage::removeActiveWindows() {
+    if (isAddBikeActive) {
+        myQHBox4->removeWidget(myBikeWindow2);
+        delete myBikeWindow2;
+        isAddBikeActive = false;
+    }
+    if (isBikeWindowActive) {
+        myQHBox4->removeWidget(myBikeWindow);
+        delete myBikeWindow;
+        isBikeWindowActive  = false;
+    }
+
 }

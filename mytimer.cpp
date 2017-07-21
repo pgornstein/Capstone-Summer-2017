@@ -4,7 +4,6 @@
 
 myTimer::myTimer()
 {
-    tElapsed = setTimeElapsed();
     tElapsedLbl = new QLabel();
     ElapsedTimeLbl = new QLabel("Time Elapsed");
     ElapsedTimeLbl->setFont(QFont("Times", 16, QFont::Bold));
@@ -26,7 +25,7 @@ void myTimer::updateTimer() {
     tElapsed++;
 }
 
-int myTimer::setTimeElapsed() {
-    // Get Time elapsed from server and convert to int
-    return 120; //test
+void myTimer::setData(double val) {
+    tElapsed  = val;
+    tElapsedLbl->setText(QString(QDateTime::fromTime_t(val).toUTC().toString("hh:mm:ss")));
 }

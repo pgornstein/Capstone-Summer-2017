@@ -15,6 +15,8 @@ public:
     explicit bikeWindow(QWidget *parent = 0);
     void setupBikeWindow();
     void queryAccess(QSqlQuery a);
+    void displayBikeInfo(int);
+
 
 private slots:
     void checkBikeID();
@@ -30,7 +32,6 @@ private:
     QHBoxLayout *myQHBox4;
     int bikeID;
 
-    void displayBikeInfo();
     void backToManagePage();
     QString setTimeOfUpdate();
 };

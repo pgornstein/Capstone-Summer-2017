@@ -33,10 +33,14 @@ void bikeHealth::changeHealth() {
     healthBar->setValue(val);
 }
 
-void bikeHealth::setBikeServicedHealth(int value) {
-    int val = value + (10/2);
+void bikeHealth::setData(int val) {
+    val = val + (10/2);
     val -= val % 10;
     healthBar->setValue(val);
     healthSlider->setValue(val);
-    // update server with health value
+    //update server
+}
+
+void bikeHealth::sendQuery(QSqlQuery a) {
+    query = a;
 }

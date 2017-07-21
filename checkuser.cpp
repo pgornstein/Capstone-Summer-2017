@@ -2,11 +2,12 @@
 
 #include <QFile>
 #include <QTextStream>
+#include <QString>
 #include <QDebug>
 #include <QVector>
 #include <QCryptographicHash>
+#include <string>
 #include <QMessageBox>
-
 
 /* Constructor
  * Takes two QString values (a username and password)
@@ -49,9 +50,8 @@ bool checkUser::isAccountFound() const {
         serverErr->setText("Try again in a few seconds");
         serverErr->show();
     }
-    return found;
+return found;
 }
-
 // Encrypts 'char *' using sha256 hash algorithm
 // Returns QString value in Hex format
 QString checkUser::generateHash(const char *data) {
@@ -64,3 +64,4 @@ QString checkUser::generateHash(const char *data) {
 void checkUser::queryAccess(QSqlQuery *a) {
     query = a;
 }
+

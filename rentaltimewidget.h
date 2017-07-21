@@ -13,6 +13,7 @@ class rentalTimeWidget : public QWidget
     Q_OBJECT
 public:
    explicit rentalTimeWidget();
+    void setData(double);
 
 private slots:
     void setRentalTime();

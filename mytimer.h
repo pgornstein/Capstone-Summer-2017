@@ -11,6 +11,7 @@ class myTimer : public QWidget
 
 public:
     explicit myTimer();
+    void setData(double);
 
 public slots:
     void updateTimer();
@@ -18,9 +19,8 @@ public slots:
 private:
     QLabel *ElapsedTimeLbl;
     QLabel *tElapsedLbl;
-    int setTimeElapsed();
     QVBoxLayout *myQVBox;
-    int tElapsed;
+    double tElapsed;
 };
 
 #endif // MYTIMER_H

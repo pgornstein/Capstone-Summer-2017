@@ -1,10 +1,12 @@
 #include "checkoutwidget.h"
 #include <QPushButton>
+#include <QDateTime>
 
-checkOutWidget::checkOutWidget()
+checkOutWidget::checkOutWidget(checkInHistory *history)
 {
+    mTimeLine = history;
     myQVBox = new QVBoxLayout();
-    checkOut = new QLabel(getCheckOutData());
+    checkOut = new QLabel();
     checkOut->setFont(QFont("Times", 16, QFont::Bold));
     myQVBox->addWidget(checkOut);
 
@@ -19,22 +21,21 @@ void checkOutWidget::toggleCheckOut() {
     if (isCheckedOut) {
         isCheckedOut = false;
         checkOut->setText("Bike is Checked-in");
+        mTimeLine->setToggled(QDateTime::currentDateTimeUtc(), isCheckedOut);
         // Update server
     } else {
         isCheckedOut = true;
         checkOut->setText("Bike is Checked-out");
+        mTimeLine->setToggled(QDateTime::currentDateTimeUtc(), isCheckedOut);
         // Update server
     }
 }
 
-QString checkOutWidget::getCheckOutData() {
-    // Access server to see if bike is checked-in or checked-out
-    // Set bool 'isCheckedOut'
-    QString bCout("Bike is Checked-out");
-    QString bCin("Bike is Checked-in");
-    if (isCheckedOut) {
-          return bCout;
+void checkOutWidget::setData(bool bCheckOut) {
+    isCheckedOut = bCheckOut;
+    if (bCheckOut) {
+        checkOut->setText("Bike is checked-out");
     } else {
-        return bCin;
+        checkOut->setText("Bike is checked-in");
     }
 }

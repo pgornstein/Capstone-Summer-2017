@@ -6,13 +6,15 @@
 #include <QVBoxLayout>
 #include <QSlider>
 #include <QProgressBar>
+#include <QtSql/QSqlQuery>
 
 class bikeHealth : public QWidget
 {
     Q_OBJECT
 public:
     explicit bikeHealth();
-    void setBikeServicedHealth(int);
+    void setData(int);
+    void sendQuery(QSqlQuery);
 
 
 private slots:
@@ -23,6 +25,7 @@ private:
     QSlider *healthSlider;
     QProgressBar *healthBar;
     void setHealth();
+    QSqlQuery query;
 
 };
 

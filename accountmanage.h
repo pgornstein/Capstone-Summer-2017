@@ -12,11 +12,12 @@ class accountManage : public QWidget
 public:
     explicit accountManage(QWidget *parent = 0);
     void queryAccess(QSqlQuery *a);
-
 private:
     QVBoxLayout *myQVBox;
     QHBoxLayout *myQHBox4;
     bikeWindow *myBikeWindow;
+    bikeWindow *myBikeWindow2;
+    bikeWindow *myBikeWindow3;
     QSqlQuery *query;
 
 
@@ -26,8 +27,8 @@ private:
     bool isBikeWindowActive;
     bool isAddBikeActive;
     bool isStatisticsActice;
-
-    int cSearch;
+    void removeActiveWindows();
 };
 
 #endif // ACCOUNTMANAGE_H
+
