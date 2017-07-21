@@ -58,9 +58,31 @@ void accountManage::addNewBike() {
 
     // Create the elements neccessary for a new bike
     // Send data to the server
+   if(query->exec("SELECT COUNT(*) FROM Master")) {
+        query->next();
+        int total = query->value(0).toInt();
+        total++;
+        std::string queryEnd = std::to_string(total);
+        std::string statement = "INSERT INTO Master (BikeId, CheckedOut, Service, Distance, Health) VALUES(";
+        statement.append(queryEnd);
+        statement.append(", 0, 0, 0, 10)");
+        if (query->exec(QString::fromUtf8(statement.c_str()))) {
+            QMessageBox::information(this, "Success", "New Bike successfully created!");
+            myQHBox4->removeItem(myQVBox);
+            myBikeWindow = new bikeWindow();
+            myBikeWindow->queryAccess(*query);
+            myQHBox4->addWidget(myBikeWindow);
+            myQHBox4->addLayout(myQVBox);
 
+        }
+        else {
+            QMessageBox::critical(this, "Connection error", "try again in a few seconds");
+        }
 
-    QMessageBox::information(this, "Success", "New Bike successfully created!");
+    }
+    else {
+       QMessageBox::information(this, "Connection error", "try again in a few seconds");
+   }
 
 }
 
@@ -75,6 +97,7 @@ void accountManage::searchForBike() {
         cSearch--;
     }
     myBikeWindow = new bikeWindow();
+    myBikeWindow->queryAccess(*query);
     myQHBox4->addWidget(myBikeWindow);
     myQHBox4->addLayout(myQVBox);
     cSearch++;
@@ -83,4 +106,8 @@ void accountManage::searchForBike() {
 
 void accountManage::displayStatistics() {
 
+}
+
+void accountManage::queryAccess(QSqlQuery *a) {
+    query = a;
 }
