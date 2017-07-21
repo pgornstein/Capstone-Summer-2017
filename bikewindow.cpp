@@ -61,6 +61,52 @@ void bikeWindow::checkBikeID() {
 }
 
 void bikeWindow::displayBikeInfo() {
+    bool CheckedOut, Service;
+       double Distance, rentalTime, timeElapsed;
+       int Health;
+       std::vector<std::string> timeline;
+       std::string statement = "SELECT * FROM Master WHERE BikeId = ";
+       std::string val = std::to_string(bikeID);
+       statement.append(val);
+       bool receivedMaster;
+       if (query.exec(QString::fromUtf8(statement.c_str()))) {
+           receivedMaster = true;
+           query.next();
+           CheckedOut = query.value(1).toBool();
+           Service = query.value(2).toBool();
+           Distance = query.value(3).toDouble();
+           Health = query.value(4).toInt();
+       }
+       else QMessageBox::warning(this, "Connection error", "try again in a few seconds");
+       bool firstTimeDone;
+       statement = "SELECT * FROM Rentals WHERE BikeId = ";
+       statement.append(val);
+       statement.append(" ORDER BY RentalId DESC");
+       bool receivedRental;
+       int latestRentalId;
+       if (query.exec(QString::fromUtf8(statement.c_str()))) {
+           receivedRental = true;
+           while (query.next()) {
+               if (!firstTimeDone) {
+                   latestRentalId = query.value(0).toInt();
+                   firstTimeDone = true;
+                   rentalTime = query.value(4).toDouble();
+                   timeElapsed = query.value(5).toDouble();
+               }
+               if (query.value(3).toString() != NULL) {
+                   timeline.push_back(query.value(3).toString().toStdString().append("I")); //apend I
+               }
+               timeline.push_back(query.value(2).toString().toStdString());
+           }
+       }
+       else QMessageBox::warning(this, "Connection error", "try again in a few seconds");
+       qDebug() <<"checkout: " <<CheckedOut <<"service: " <<Service <<"Distance: " <<Distance <<"Health: " <<Health;
+
+       qDebug() <<"rental id: " <<latestRentalId << "rental time: " <<rentalTime << "Time elapsed: " <<timeElapsed;
+
+       for (int a = 0; a < timeline.size(); a++) {
+           qDebug() <<"timeline: " <<QString::fromUtf8(timeline[a].c_str());
+       }
     this->resize(1500,1000);
     // Delete objects from window
     delete editBikeID;
@@ -112,4 +158,8 @@ void bikeWindow::backToManagePage() {
 QString bikeWindow::setTimeOfUpdate() {
     // Search database for time of last update
     return QString(QTime::currentTime().toString("hh:mm:ss")); //test
+}
+
+void bikeWindow::queryAccess(QSqlQuery a) {
+    query = a;
 }

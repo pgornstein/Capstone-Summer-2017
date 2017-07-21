@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <QVector>
 #include <QCryptographicHash>
+#include <QMessageBox>
+
 
 /* Constructor
  * Takes two QString values (a username and password)
@@ -27,7 +29,27 @@ bool checkUser::isAccountFound() const {
 
     //  std::string name, password; check server against these values
     // return true if account is found using sql queries
-    return "63939540b5a5aadf20920ba5558ed7d089e265d48d16152d00fa47f5fe827d43" == password; //test for now
+    //return "63939540b5a5aadf20920ba5558ed7d089e265d48d16152d00fa47f5fe827d43" == password; //test for now
+    bool found;
+    std::string foundPwd;
+    std::string statement = "SELECT Password FROM Users WHERE UserId = '";
+    statement.append(name);
+    statement.append("'");
+    qDebug() <<"statement is: " <<QString::fromUtf8(statement.c_str());
+    if (query->exec(QString::fromUtf8(statement.c_str()))) {
+        query->next();
+        if (query->value(0).toString() != NULL) {
+          foundPwd = query->value(0).toString().toStdString();
+          if (password == foundPwd) found = true;
+      }
+    }
+    else {
+        QMessageBox *serverErr = new QMessageBox();
+        serverErr->setWindowTitle("Server Error");
+        serverErr->setText("Try again in a few seconds");
+        serverErr->show();
+    }
+    return found;
 }
 
 // Encrypts 'char *' using sha256 hash algorithm
@@ -39,3 +61,6 @@ QString checkUser::generateHash(const char *data) {
     return userPass->result().toHex();
 }
 
+void checkUser::queryAccess(QSqlQuery *a) {
+    query = a;
+}

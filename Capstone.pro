@@ -35,8 +35,7 @@ SOURCES += \
         checkoutwidget.cpp \
         bikehealth.cpp \
         bikeserviced.cpp \
-        checkinhistory.cpp \
-    sqlconnector.cpp
+        checkinhistory.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -49,8 +48,7 @@ HEADERS += \
         checkoutwidget.h \
         bikehealth.h \
         bikeserviced.h \
-        checkinhistory.h \
-    sqlconnector.h
+        checkinhistory.h
 
 FORMS += \
         mainwindow.ui

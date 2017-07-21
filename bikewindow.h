@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QtSql/QSqlQuery>
 
 class bikeWindow : public QWidget
 {
@@ -13,11 +14,13 @@ class bikeWindow : public QWidget
 public:
     explicit bikeWindow(QWidget *parent = 0);
     void setupBikeWindow();
+    void queryAccess(QSqlQuery a);
 
 private slots:
     void checkBikeID();
 
 private:
+    QSqlQuery query;
     QLineEdit *editBikeID;
     QLabel *enterBikeID;
     QPushButton *acceptBikeID;
