@@ -11,26 +11,26 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-     ui(new Ui::MainWindow)
- {
-     ui->setupUi(this);
-     QString imgPath = ":/Res/Res/logo.jpg";
-     QImage image(imgPath);
-     ui->imgView->setPixmap(QPixmap::fromImage(image));
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    QString imgPath = ":/Res/Res/logo.jpg";
+    QImage image(imgPath);
+    ui->imgView->setPixmap(QPixmap::fromImage(image));
 
-     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-     db.setHostName("capstone-bikes.cphpxguj45gw.us-east-1.rds.amazonaws.com");
-     db.setUserName("db_admin");
-     db.setPassword("capstone");
-     db.setPort(3306);
-     db.setDatabaseName("Capstone_Bike_Shop");
-     db.setConnectOptions("MYSQL_OPT_CONNECT_TIMEOUT=15");
-     if(!db.open()) {
-            QSqlError err = db.lastError();
-            qDebug() << err.text();
-     }
-      query = new QSqlQuery(db);
-      //query->exec("INSERT INTO Master (BikeId, CheckedOut, Service, Distance, Health) VALUES (2, 0, 0, 0, 10);");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("capstone-bikes.cphpxguj45gw.us-east-1.rds.amazonaws.com");
+    db.setUserName("db_admin");
+    db.setPassword("capstone");
+    db.setPort(3306);
+    db.setDatabaseName("Capstone_Bike_Shop");
+    db.setConnectOptions("MYSQL_OPT_CONNECT_TIMEOUT=15");
+    if(!db.open()) {
+           QSqlError err = db.lastError();
+           qDebug() << err.text();
+    }
+     query = new QSqlQuery(db);
+     //query->exec("INSERT INTO Master (BikeId, CheckedOut, Service, Distance, Health) VALUES (2, 0, 0, 0, 10);");
 }
 
 MainWindow::~MainWindow()
